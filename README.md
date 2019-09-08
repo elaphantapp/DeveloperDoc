@@ -1,6 +1,6 @@
 # Elephant Wallet Develop Document
 
-## How to call the elephant wallet
+## 1. How to call the elephant wallet
 
 ### Request
 
@@ -18,8 +18,8 @@
 
 #### Response to backend
 
-## Elephant wallet scheme protocol
+## 2. Elephant wallet scheme protocol
 
-## The memo message format
+## 3. The memo message format
 
-## Create a mini program
+## 4. Create a mini program
