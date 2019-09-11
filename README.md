@@ -8,7 +8,9 @@ How to call elephant([中文版](./how_to_call_elephant_cn.md))
 
 URI schemes introduction([English version](./elaphant_uri_schemes.md) | [中文版](./elaphant_uri_schemes_cn.md))
 
-## 3. The memo message format
+## 3. The transcation memo message format
+
+Memo format([中文版](./elephant_memo_format_cn.md))
 
 ## 4. Create a mini program
 
