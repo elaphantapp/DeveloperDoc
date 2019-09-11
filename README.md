@@ -18,7 +18,9 @@
 
 #### Response to backend
 
-## 2. Elephant wallet scheme protocol
+## 2. The API of Elephant wallet for 3rd APPs
+
+**URI schemes introduction**([English version](./elaphant_uri_schemes.md) | [中文版](./elaphant_uri_schemes_cn.md))
 
 ## 3. The memo message format
 
