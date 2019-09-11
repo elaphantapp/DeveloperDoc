@@ -24,7 +24,7 @@ RandomNumber=4284432979
 
 为了方便跨平台的Web项目调用Elephant wallet，我们提供一个launch elephant的代理页面的项目
 
-- [launch.app](https://github.com/elaphantapp/launch.app) 
+- [Github Repo: launch.app](https://github.com/elaphantapp/launch.app) 
 
 第三方应用可以使用一个固定的URL格式来调用Elephant wallet，而无需再次判断发起端是从手机端还是PC、或者是微信。
 
@@ -51,7 +51,7 @@ RandomNumber=4284432979
 
 如果PC Web想调用Elephant Wallet并获得结果，通常需要需要自己实现一个后端服务中转，为此我们提供了一个转发服务
 
-- [Echo service](https://github.com/elaphantapp/EchoService)
+- [Github Repo: Echo Service](https://github.com/elaphantapp/EchoService)
 
 两个例子：
 
