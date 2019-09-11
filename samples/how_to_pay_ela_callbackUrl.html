@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>how_to_pay_ela</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <!--二维码生成js库-->
+    <script src="./js/vue-qrcode.min.js"></script>
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script>
+        Vue.component(VueQrcode.name, VueQrcode);
+    </script>
+</head>
+<style>
+    .four {
+        width: 220px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .four p {
+        font-family: Bio Sans;
+        font-size: 16px;
+        margin-top: 30px;
+        width: 220px;
+        line-height: 44px;
+        height: 44px;
+        background: #0070C8;
+        border-radius: 200px;
+        color: #FFFFFF;
+    }
+</style>
+
+<body>
+    <div id="app">
+
+        <div style="width:400px;margin: 0 auto" v-if="qrcode" v-if="isShow">
+            <qrcode :value="qrcode" :options="{ width: 400 }" style="display:block"></qrcode>
+            <div style="text-align: center">Please use elephant wallet to scan the QR code.</div>
+        </div>
+        <div style="text-align: center">{{txcontent}}</div>
+        <p v-if="!isShow" style="text-align: center;font-size: 36px;margin-top:40px;margin-bottom:20px">{{curLangule["key10"]}}</p>
+        <div v-if="!isShow" style="text-align: center"><input placeholder="Receiving address" v-model="schemeConfig.ReceivingAddress" style="width: 300px;padding: 10px" /></div>
+        <div v-if="!isShow" style="text-align: center;margin: 10px"><input placeholder="Required amount" v-model="schemeConfig.Amount" style="width: 300px;padding: 10px" /></div>
+        <div v-if="!isShow" class="four" v-on:click="goPay">
+            <p>{{curLangule["key9"]}}</p>
+        </div>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            loading: false,
+            zh: {
+                key9: '去支付',
+                key10: '怎么支付ELA',
+            },
+            en: {
+                key9: 'Go pay',
+                key10: 'how_to_pay_ela',
+            },
+            curLangule: {},
+            schemeConfig: {
+                "AppID": "7d80c7e800f5842b3b8e7ec7318189f66b7fd5b6db13bb80fbd89d2b1c444772c1d0202fea1e9cbabbf3258b3d91685484c02c2ae52d78ca39e2e54593ec81dd",
+                "AppName": "Hackathon",
+                "Description": "test pay",
+                "OrderID": "12345",
+                "CoinName": "ELA",
+                "Amount": "",
+                "ReceivingAddress": "",
+                "DID": "iXzenTELVRDc712tmt2Qvbtk3KcAwV2tU8",
+                "PublicKey": "032f6347b27401dc0bced2de0ab4531e62c496841cd8e67a58c572e3018dcb72d9",
+                "CallbackUrl": ""
+            },
+            qrcode: "",
+            callbackUrl: "https://echo.elaphant.app/api/1/ela_echo/",
+            isShow: false,
+            txcontent: "",
+
+        },
+        methods: {
+            getLanugle: function() {
+                this.curLangule = this.en;
+                this.curLanguleKey = 'en';
+                var JsSrc = (navigator.language || navigator.browserLanguage).toLowerCase();
+                if (JsSrc.indexOf('zh') >= 0) {
+                    // 假如浏览器语言是中文
+                    this.curLanguleKey = 'zh';
+                    this.curLangule = this.zh;
+                } else if (JsSrc.indexOf('en') >= 0) {
+                    this.curLangule = this.en;
+                    this.curLanguleKey = 'en';
+                } else {
+                    // 假如浏览器语言是其它语言
+                    this.curLangule = this.en;
+                    this.curLanguleKey = 'en';
+                }
+            },
+            goPay() {
+
+                if (this.schemeConfig["ReceivingAddress"] === "") {
+                    alert("Please input a receive address");
+                    return;
+                }
+
+
+                if (this.schemeConfig["Amount"] === "") {
+                    alert("Please input a number");
+                    return;
+                }
+                this.isShow = true;
+                //唯一标识号
+                var traceid = new Date().getTime().toString();
+                //拼接回调url 参数分别是appid和唯一标识号
+                this.schemeConfig["CallbackUrl"] = this.callbackUrl + this.schemeConfig["AppID"] + "/" + traceid;
+                this.qrcode = this.buildElapay(); ////构建支付协议
+                this.autoRequest(traceid);
+            },
+            buildElapay() {
+                var url = "elaphant://elapay?";
+                _.forEach(this.schemeConfig, function(val, key, index) {
+                    if (key === 'ReturnUrl' || key === 'CallbackUrl') {
+                        val = encodeURIComponent(val);
+                    }
+                    url += key + '=' + val + '&';
+                });
+
+                return url.substring(0, url.length - 1);
+            },
+            getCallback(appId, traceid) {
+                return new Promise((resovle, reject) => {
+                    $.ajax({
+                        url: this.callbackUrl + appId + "/" + traceid,
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        type: 'GET',
+                        success: function(data) { //成功回调函数
+                            resovle(data);
+                        },
+                        error: function(err) { //失败回调函数
+                            reject(err);
+                        }
+                    });
+
+
+                });
+            },
+            autoRequest(traceid) { //自动获取回调url内容 {"data": "{\n  \"OrderID\" : \"12345\",\n  \"TXID\" : \"4afab62405809ed3814f4c95ff9dd79aec41ac5a61e7d5ac08eedfa8cece15bf\"\n}","status": 200}
+                this.timer = setInterval(() => {
+                    this.getCallback(this.schemeConfig["AppID"], traceid).then((res) => {
+                        if (res.status === 200) {
+                            if (res.data) {
+                                var jsondata = JSON.parse(res.data);
+                                window.clearInterval(this.timer);
+                                var txid = jsondata.TXID;
+                                //this.txid = txid;
+                                console.log("=====txid=====" + txid);
+                                this.statusQuery(txid); //自动查询交易状态
+                            }
+
+                        }
+                    }).catch((error) => {
+                        window.clearInterval(this.timer);
+                    });
+                }, 1000);
+            },
+            statusAjax(txid) { //查询交易状态 {"data": "{\n  \"OrderID\" : \"12345\",\n  \"TXID\" : \"4afab62405809ed3814f4c95ff9dd79aec41ac5a61e7d5ac08eedfa8cece15bf\"\n}","status": 200}
+                return new Promise((resovle, reject) => {
+                    $.ajax({
+                        url: "https://node1.elaphant.app/api/1/tx/" + txid,
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        type: 'GET',
+                        success: function(data) { //成功回调函数
+                            resovle(data);
+                        },
+                        error: function(err) { //失败回调函数
+                            reject(err);
+                        }
+                    });
+
+
+                });
+            },
+            statusQuery(txid) {
+                var timer = setInterval(() => {
+                    this.statusAjax(txid).then((res) => {
+                        if (res.status === 200) {
+                            console.log("=======" + JSON.stringify(res));
+                            var item = res.result;
+                            var conut = item["confirmations"] || ""; //根据确认数判定状态
+                            if (conut == 0) {
+                                this.txcontent = txid + ":" + "sending";
+                            } else if (conut == 1) {
+                                this.txcontent = txid + ":" + "0 confirm";
+                            } else if (conut > 1) {
+                                this.txcontent = txid + ":" + "1+ confirms";
+                                window.clearInterval(timer);
+                            }
+
+                        }
+
+                    }).catch((error) => {
+                        window.clearInterval(timer);
+                    });
+                }, 5000);
+            }
+        },
+        created: function() {
+            this.getLanugle();
+        }
+    });
+</script>
+
+</html>
