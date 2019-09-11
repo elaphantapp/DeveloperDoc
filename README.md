@@ -15,3 +15,5 @@ Memo format([中文版](./elephant_memo_format_cn.md))
 ## 4. Create a mini program
 
 Create a mini program and install to Elephant wallet([English](./capsule_guide/capsule_tools_en.md) | [中文版](./capsule_guide/capsule_tools_cn.md))
+
+[Mini Program maker](https://zuohuahua.github.io/Elastos.Tools.Creator.Capsule/)
