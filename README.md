@@ -2,21 +2,7 @@
 
 ## 1. How to call the elephant wallet
 
-### Request
-
-#### Request from mobile
-
-#### Request from PC Web
-
-### Response
-
-#### Return to frontend
-
-##### mobile web
-
-##### PC web
-
-#### Response to backend
+How to call elephant([中文版](./how_to_call_elephant_cn.md))
 
 ## 2. The API of Elephant wallet for 3rd APPs
 
