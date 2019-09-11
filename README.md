@@ -26,4 +26,4 @@ URI schemes introduction([English version](./elaphant_uri_schemes.md) | [中文�
 
 ## 4. Create a mini program
 
-Create a mini program and install to Elephant wallet([English](./capsule_guid/capsule_tools_en.md) | [中文版](./capsule_guid/capsule_tools_cn.md))
+Create a mini program and install to Elephant wallet([English](./capsule_guide/capsule_tools_en.md) | [中文版](./capsule_guide/capsule_tools_cn.md))
