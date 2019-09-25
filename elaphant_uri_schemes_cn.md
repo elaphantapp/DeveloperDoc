@@ -448,7 +448,7 @@ CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
 Data="{
 	\"DID\":<DID>,
 	\"PublicKey\":<PublicKey>,
-	\"RequesterDID\":<RequestedConent>,
+	\"RequesterDID\":<RequesterDID>,
 	\"RequestedContent\":<RequestedContent>,
 	\"Timestamp\":<Timestamp>,
 	\"UseStatement\":[UseStatement]
