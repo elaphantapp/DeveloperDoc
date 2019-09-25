@@ -428,7 +428,7 @@ AppID=cc053c61afc22dda9a309e96943c1734&
 AppName=RedPacket&
 Description=red&
 PublicKey=028971D6DA990971ABF7E8338FA1A81E1342D0E0FD8C4D2A4DF68F776CA66EA0B1&
-RequestedConent=7aae6c4f8da0799063f1db14024413ba7aba70e61312f291527dfde3605ea322
+RequestedContent=7aae6c4f8da0799063f1db14024413ba7aba70e61312f291527dfde3605ea322
 UseStatement=Sign%20the%20hash%20of%20the%20block%2C%20indicating%20the%20recognition%20of%20the%20contents%20of%20the%20block
 CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
 ```
@@ -449,7 +449,7 @@ Data="{
 	\"DID\":<DID>,
 	\"PublicKey\":<PublicKey>,
 	\"RequesterDID\":<RequestedConent>,
-	\"RequestedConent\":<RequestedConent>,
+	\"RequestedContent\":<RequestedContent>,
 	\"Timestamp\":<Timestamp>,
 	\"UseStatement\":[UseStatement]
 }"
@@ -467,7 +467,7 @@ PublicKey       | String    | 必选 | DID的公钥
 RequesterDID    | String    | 必选 | 第三方请求者的DID
 AppName                 | String & URLEncode | 必选 | 第三方请求应用的名称; 长度不超过64个字节
 AppID                   | String     | 必选 | 由开发者DID对AppName签名后产生的签名字符串，作为该App的ID。
-RequestedConent | String & URLEncode    | 必选 | 请求签名的内容
+RequestedContent | String & URLEncode    | 必选 | 请求签名的内容
 Timestamp       | String    | 必选 | 用户授权的时间戳
 UseStatement    | String & URLEncode    | 必选 | 用户声明的此次签名的用途
 Signature       | String    | 必选 | 针对返回信息的签名
@@ -480,7 +480,7 @@ Callback是以Post方式返回信息，在Body中使用JSON格式,包含Data和S
 [URL]: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&offset=-480
 [Body]:
 {
-    "Data":"{\"RequesterDID\":\"iYarsyzWeaSRa7XVqeCeNpa1J9sGB4Uwyr\",\"DID\":\"iYarsyzWeaSRa7XVqeCeNpa1J9sGB4Uwyr\",\"AppID\":\"cc053c61afc22dda9a309e96943c1734\",\"AppName\":\"RedPacket\",\"RequestedConent\":\"7aae6c4f8da0799063f1db14024413ba7aba70e61312f291527dfde3605ea322\",\"UseStatement\":\"Sign%20the%20hash%20of%20the%20block%2C%20indicating%20the%20recognition%20of%20the%20contents%20of%20the%20block\",\"Timestamp\":\"0x6601F031E63cb2C477beE183D671F0517a37CdC7\",\"PublicKey\":\"03b27a7ae64d9f11c9685475f76d9e3ba6498953c49f69962b6566655146820d71\"}",
+    "Data":"{\"RequesterDID\":\"iYarsyzWeaSRa7XVqeCeNpa1J9sGB4Uwyr\",\"DID\":\"iYarsyzWeaSRa7XVqeCeNpa1J9sGB4Uwyr\",\"AppID\":\"cc053c61afc22dda9a309e96943c1734\",\"AppName\":\"RedPacket\",\"RequestedContent\":\"7aae6c4f8da0799063f1db14024413ba7aba70e61312f291527dfde3605ea322\",\"UseStatement\":\"Sign%20the%20hash%20of%20the%20block%2C%20indicating%20the%20recognition%20of%20the%20contents%20of%20the%20block\",\"Timestamp\":\"0x6601F031E63cb2C477beE183D671F0517a37CdC7\",\"PublicKey\":\"03b27a7ae64d9f11c9685475f76d9e3ba6498953c49f69962b6566655146820d71\"}",
     "Sign": "02e1df21bc11744421ece9be874691ebace8f6ce7ea4443d0f96500e9a9db3978ce90eecc9863be8de27648eb316560df904eaf1c6fc2dc8bf630822cdb9c176"
 }
 
@@ -491,7 +491,7 @@ Callback是以Post方式返回信息，在Body中使用JSON格式,包含Data和S
 Return是以Get方式返回信息，在URL的参数中附加Data和Sign参数，请第三方在其ReturnURL中避免使用这两个参数名，以免冲突。
 ```
 [Method]: GET
-[URL]: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&offset=-480&Data={\"RequesterDID\":\"iYarsyzWeaSRa7XVqeCeNpa1J9sGB4Uwyr\",\"DID\":\"iYarsyzWeaSRa7XVqeCeNpa1J9sGB4Uwyr\",\"AppID\":\"cc053c61afc22dda9a309e96943c1734\",\"AppName\":\"RedPacket\",\"RequestedConent\":\"7aae6c4f8da0799063f1db14024413ba7aba70e61312f291527dfde3605ea322\",\"UseStatement\":\"Sign%20the%20hash%20of%20the%20block%2C%20indicating%20the%20recognition%20of%20the%20contents%20of%20the%20block\",\"Timestamp\":\"0x6601F031E63cb2C477beE183D671F0517a37CdC7\",\"PublicKey\":\"03b27a7ae64d9f11c9685475f76d9e3ba6498953c49f69962b6566655146820d71\"}&Sign= 02e1df21bc11744421ece9be874691ebace8f6ce7ea4443d0f96500e9a9db3978ce90eecc9863be8de27648eb316560df904eaf1c6fc2dc8bf630822cdb9c176
+[URL]: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&offset=-480&Data={\"RequesterDID\":\"iYarsyzWeaSRa7XVqeCeNpa1J9sGB4Uwyr\",\"DID\":\"iYarsyzWeaSRa7XVqeCeNpa1J9sGB4Uwyr\",\"AppID\":\"cc053c61afc22dda9a309e96943c1734\",\"AppName\":\"RedPacket\",\"RequestedContent\":\"7aae6c4f8da0799063f1db14024413ba7aba70e61312f291527dfde3605ea322\",\"UseStatement\":\"Sign%20the%20hash%20of%20the%20block%2C%20indicating%20the%20recognition%20of%20the%20contents%20of%20the%20block\",\"Timestamp\":\"0x6601F031E63cb2C477beE183D671F0517a37CdC7\",\"PublicKey\":\"03b27a7ae64d9f11c9685475f76d9e3ba6498953c49f69962b6566655146820d71\"}&Sign= 02e1df21bc11744421ece9be874691ebace8f6ce7ea4443d0f96500e9a9db3978ce90eecc9863be8de27648eb316560df904eaf1c6fc2dc8bf630822cdb9c176
 
 ```
 
@@ -500,7 +500,7 @@ Return是以Get方式返回信息，在URL的参数中附加Data和Sign参数，
 2. 从JSON对象中恢复PublicKey、DID字段内容；
 3. 验证PublicKey与DID是否匹配；
 4. 验证Data字符串内容、PublicKey和Sign的签名内容是否匹配；
-5. 验证返回的RequestedConent字段与“步骤1”请求时的RequestedConent值是否一致；
+5. 验证返回的RequestedContent字段与“步骤1”请求时的RequestedContent值是否一致；
 
 # multicreate指令
 
