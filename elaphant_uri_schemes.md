@@ -142,7 +142,7 @@ Data="{
 	\"IOEXAddress\":[IOEXAddress],
 	\"Email\":[Email],
 	\"PhoneNumber\":[PhoneNumber],
-	ChineseIDCard\":[ChineseIDCard]
+	\"ChineseIDCard\":[ChineseIDCard]
 }"
 
 Sign="<signature>"
