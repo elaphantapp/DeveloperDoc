@@ -11,7 +11,7 @@ method :
 `POST`
 
 request Data :
-```json
+```js
 {
 	// number of packet , max 2000 , if packet_amt = 1ELA , you can send maximum 500 red packet , 2ELA for 1000 packet etc..
 	// must
@@ -21,7 +21,7 @@ request Data :
 	// must
 	"packet_amt": 1.0,
 
-    // only specified addrs can receive the packet
+        // only specified addrs can receive the packet
 	// optional
 	"packet_allowed_rcv_addrs":[],
 	
@@ -48,17 +48,17 @@ request Data :
 ```
 
 response :
-```json
+```js
 {
-    // response result only exist when status is 200
-    // optional
+    	// response result only exist when status is 200
+    	// optional
 	"result":{
 	
-	    // pay this address to create a red packet
-	    // must
+	    	// pay this address to create a red packet
+	    	// must
 		"pay_address":"EbDLm4dndRAmTyEhh1zryY9Q8R5PoaZ64V",
 		
-        // red packet identity hash
+        	// red packet identity hash
 		// must 
 		"packet_hash":"2229495168234378",
     	
@@ -99,21 +99,21 @@ show_receivers=true
 ```
 
 response :
-```json
+```js
 {
-    // response result only exist when status is 200
-    // optional 
+    	// response result only exist when status is 200
+    	// optional 
 	"result":{
 	
 		// red packet detail info
 		// must
 		"packet_details":{
 		
-            // red packet identity hash
+            	// red packet identity hash
     		// must 
     		"packet_hash":"2229495168234378",
 		
-            // number of packet , max 2000 , if packet_amt = 1ELA , you can send maximum 500 red packet , 2ELA for 1000 packet etc..
+            	// number of packet , max 2000 , if packet_amt = 1ELA , you can send maximum 500 red packet , 2ELA for 1000 packet etc..
         	// must
         	"packet_num": 500,
         	
@@ -214,12 +214,12 @@ name=alice
 ```
 
 response Data:
-```json
+```js
 {
 
 
-    // response result only exist when status is 200
-    // optional 
+    	// response result only exist when status is 200
+    	// optional 
 	"result":{
 	
 		// only return when the desc is Normal
@@ -235,7 +235,7 @@ response Data:
 	// must
 	"status":200
 	
-    // description of the request error only exist when status is not 200
+    	// description of the request error only exist when status is not 200
 	// optinal
 	"error_msg":"something is not right"
 }
