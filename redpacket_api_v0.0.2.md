@@ -1,16 +1,16 @@
-### Red Packet Api :
+# Red Packet Api :
 
-1. Create a red packet 
+## 1. Create a red packet 
 
-request url : 
+### request url : 
 
 `/api/v1/packet/create`
 
-method :
+### method :
 
 `POST`
 
-request Data :
+### request Data :
 ```js
 {
 	// number of packet , max 2000 , if packet_amt = 1ELA , you can send maximum 500 red packet , 2ELA for 1000 packet etc..
@@ -47,7 +47,7 @@ request Data :
 }
 ```
 
-response :
+### response :
 ```js
 {
     	// response result only exist when status is 200
@@ -77,17 +77,17 @@ response :
 }
 ```
 
-2. Peek red packet
+## 2. Peek red packet
 
-request url : 
+### request url : 
 
 `/api/v1/packet/peek`
 
-method :
+### method :
 
 `GET`
 
-request Data :
+### request Data :
 ```string
 // packet hash
 // must
@@ -98,7 +98,7 @@ packet_hash=2229495168234378
 show_receivers=true
 ```
 
-response :
+### response :
 ```js
 {
     	// response result only exist when status is 200
@@ -188,17 +188,17 @@ response :
 }
 ```
 
-3. Grab a red packet 
+## 3. Grab a red packet 
 
-request url :    
+### request url :    
 
 `/api/v1/packet/grab`
 
-method :     
+### method :     
 
 `Get` 
 
-request Data: 
+### request Data: 
 ```string
 // red packet identity hash
 // must 
@@ -213,7 +213,7 @@ address=EbDLm4dndRAmTyEhh1zryY9Q8R5PoaZ64V
 name=alice
 ```
 
-response Data:
+### response Data:
 ```js
 {
 
