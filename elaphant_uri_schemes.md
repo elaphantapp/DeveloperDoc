@@ -107,10 +107,10 @@ RequestInfo="Nickname,ELAAddress,Email,PhoneNumber"
 Identity Request Example:
 ```
 elaphant://identity?
-AppID=cc053c61afc22dda9a309e96943c1734&
-AppName=RedPacket&
-Description=red&
-PublicKey=028971D6DA990971ABF7E8338FA1A81E1342D0E0FD8C4D2A4DF68F776CA66EA0B1&
+AppName=FooBar&
+Description=FooBar&
+DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
+PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
 RequestInfo=BTCAddress%2CETHAddress%2CEmail%2CPhoneNumber
 CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
 ```
@@ -235,10 +235,10 @@ Command parameter:
 Elapay request example:
 ```
 elaphant://elapay?
-AppID=cc053c61afc22dda9a309e96943c1734&
-AppName=RedPacket&
-Description=red&
-PublicKey=028971D6DA990971ABF7E8338FA1A81E1342D0E0FD8C4D2A4DF68F776CA66EA0B1&
+AppName=FooBar&
+Description=FooBar&
+DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
+PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
 OrderID=354199ds9213k1f&
 CoinName=ELA&
 Amount=1.234&
@@ -321,10 +321,10 @@ Request parameters:
 eladposvote request example:
 ```
 elaphant://eladposvote?
-AppID=cc053c61afc22dda9a309e96943c1734&
-AppName=DPoSVote&
-Description=DPoSVote%20mini%20app&
-PublicKey=028971D6DA990971ABF7E8338FA1A81E1342D0E0FD8C4D2A4DF68F776CA66EA0B1&
+AppName=FooBar&
+Description=FooBar&
+DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
+PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
 CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
 CandidatePublicKeys=03ef5f8b0534c82aa4db218f7cead278124efc0411e4ca38b6131954a58e8ae3c0%2C03ef5f8b0534c82aa4db218f7cead278124efc0411e4ca38b6131954a58e8ae3c0
 ```
@@ -404,10 +404,10 @@ Command parameter:
 Sign Request Example:
 ```
 elaphant://Sign?
-AppID=cc053c61afc22dda9a309e96943c1734&
-AppName=RedPacket&
-Description=red&
-PublicKey=028971D6DA990971ABF7E8338FA1A81E1342D0E0FD8C4D2A4DF68F776CA66EA0B1&
+AppName=FooBar&
+Description=FooBar&
+DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
+PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
 RequestedContent=7aae6c4f8da0799063f1db14024413ba7aba70e61312f291527dfde3605ea322
 UseStatement=Sign%20the%20hash%20of%20the%20block%2C%20indicating%20the%20recognition%20of%20the%20contents%20of%20the%20block
 CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
