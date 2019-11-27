@@ -41,6 +41,10 @@
 	// must
 	"packet_creator":"Elaphant wallet",
 	
+	// define the red packet end timestamp , default 1 day . timestamp which is the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this date(utc time)
+	// optional
+	"packet_end_timestamp":1572950076764,
+	
 	//current locale language . only support `zh_CN` or `en_US` , default `en_US` 
 	//optional
 	"language":"en_US"
@@ -149,6 +153,14 @@ show_receivers=true
         	// must
         	"packet_rcv_amt":0.8762333,
         	
+		// red packet start timestamp
+		// must
+		"packet_start_timestamp":1572940076764,
+		
+		// red packet end timestamp
+		// must
+		"packet_end_timestamp":1572950076764,
+		
         	// receiver details , only exist when request param `show_receivers = true`
         	// optional
         	"packet_rcver_details":[
@@ -225,6 +237,10 @@ name=alice
 		// only return when the desc is Normal
 		// optinal
 		"amount": 0.0002,
+		
+		// only return when the desc is Normal, tell you if this is your first time grabing this red packet . only the first time grab a red packet will actually send you the red packet.
+		// optional
+		"first_grab": true,
 		
 		// enum value , may be the following values , `Normal` or `Too_late` or `Not_allowed`
 		// must 
