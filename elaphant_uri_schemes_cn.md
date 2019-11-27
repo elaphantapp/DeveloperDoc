@@ -101,7 +101,7 @@ RequestInfo**           | String & URLEncode | 可选 | 请求获取用户DID的
 
 ** RequestInfo字段是第三方需要的信息字段，以逗号分隔，可请求的字段包括
 ```
-Nickname, ELAAddress, BTCAddress, BCHAddress, ETHAddress, IOEXAddress, Email, PhoneNumber, ChineseIDCard
+Nickname, ELAAddress, BTCAddress, BCHAddress, ETHAddress, ELAETHSCAddress, IOEXAddress, Email, PhoneNumber, ChineseIDCard
 ```
 
 ** 其中标注URLEncode的字段，在请求时必须使用UTF8字符集和URL Encode方法编码，Elephant处理时会使用URL Decode解码。
@@ -114,13 +114,13 @@ RequestInfo="Nickname,ELAAddress,Email,PhoneNumber"
 **identity请求示例：**
 ```
 elaphant://identity?
-AppID=cc053c61afc22dda9a309e96943c1734&
-AppName=RedPacket&
-Description=red&
-DID=iZW9ozTSXk4ukRXx7vCTTFYebZHFwMUtz7&
-PublicKey=028971D6DA990971ABF7E8338FA1A81E1342D0E0FD8C4D2A4DF68F776CA66EA0B1&
+AppID=e104892291bebf6047681f415165067b8e167e18920291a3c791ca3daec6020fc4c09640c790f2138f50b17a029029acb74ddd9406ff041611d3fbde9f5eb542&
+AppName=FooBar&
+Description=FooBar&
+DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
+PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
 RequestInfo=BTCAddress%2CETHAddress%2CEmail%2CPhoneNumber
-CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
+CallbackUrl=http%3A%2F%2Fbing.com
 ```
 
 也可以将URI生成二维码，用户通过Elephant扫描二维码完成请求。
@@ -243,10 +243,11 @@ ReceivingAddress          | String     | 必选 | 用于收款的地址
 **elapay请求示例：**
 ```
 elaphant://elapay?
-AppID=cc053c61afc22dda9a309e96943c1734&
-AppName=RedPacket&
-Description=red&
-PublicKey=028971D6DA990971ABF7E8338FA1A81E1342D0E0FD8C4D2A4DF68F776CA66EA0B1&
+DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
+AppID=e104892291bebf6047681f415165067b8e167e18920291a3c791ca3daec6020fc4c09640c790f2138f50b17a029029acb74ddd9406ff041611d3fbde9f5eb542&
+AppName=FooBar&
+Description=FooBar&
+PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
 OrderID=354199ds9213k1f&
 CoinName=ELA&
 Amount=1.234&
@@ -334,10 +335,10 @@ CandidatePublicKeys                 | String & URLEncode     | 必选 | 候选�
 
 ```
 elaphant://eladposvote?
-AppID=cc053c61afc22dda9a309e96943c1734&
-AppName=DPoSVote&
-Description=DPoSVote%20mini%20app&
-PublicKey=028971D6DA990971ABF7E8338FA1A81E1342D0E0FD8C4D2A4DF68F776CA66EA0B1&
+AppName=FooBar&
+Description=FooBar&
+DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
+PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
 CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
 CandidatePublicKeys=03ef5f8b0534c82aa4db218f7cead278124efc0411e4ca38b6131954a58e8ae3c0%2C03ef5f8b0534c82aa4db218f7cead278124efc0411e4ca38b6131954a58e8ae3c0
 
@@ -424,10 +425,10 @@ UseStatement           | String & URLEncode | 可选 | 提示用户此次签名�
 **sign请求示例：**
 ```
 elaphant://sign?
-AppID=cc053c61afc22dda9a309e96943c1734&
-AppName=RedPacket&
-Description=red&
-PublicKey=028971D6DA990971ABF7E8338FA1A81E1342D0E0FD8C4D2A4DF68F776CA66EA0B1&
+AppName=FooBar&
+Description=FooBar&
+DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
+PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
 RequestedContent=7aae6c4f8da0799063f1db14024413ba7aba70e61312f291527dfde3605ea322
 UseStatement=Sign%20the%20hash%20of%20the%20block%2C%20indicating%20the%20recognition%20of%20the%20contents%20of%20the%20block
 CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
