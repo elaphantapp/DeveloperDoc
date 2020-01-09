@@ -166,8 +166,8 @@ show_receivers=true
         	"packet_rcver_details":[
         	    {
         	    
-        	        // receiver name
-        	        // must
+        	        // receiver name , only exist when receiver's name is not blank
+        	        // optinal
         	        "name":"Your NickName",
         	        
         	        // receiver address
