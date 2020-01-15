@@ -223,6 +223,10 @@ address=EbDLm4dndRAmTyEhh1zryY9Q8R5PoaZ64V
 // red packet graber name
 // must
 name=alice
+&
+// uuid , optional packet graber identifier
+// optional
+uuid=39ac1e62-f885-4094-b57e-9e64efc73c82
 ```
 
 ### response Data:
