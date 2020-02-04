@@ -17,6 +17,7 @@ elaphant://<command></RequiredParameters...>[/CommandParameters...]
 - [身份鉴权identity](#identity指令)
 - [支付elapay](#elapay指令)
 - [DPoS投票eladposvote](#eladposvote指令)
+- [CRC投票elacrcvote](#elacrcvote指令)
 - [签名授权sign](#sign指令)
 - [setproperty](#setproperty指令)
 - [getproperty](#getproperty指令)
@@ -329,6 +330,95 @@ elaphant://eladposvote?
 字段名称           | 类型              | 是否必选 | 描述
 ----------------------| ------------------- | ------------------- | -------------------
 CandidatePublicKeys                 | String & URLEncode     | 必选 | 候选人的公钥列表，用逗号分隔
+
+
+**eladposvote请求示例：**
+
+```
+elaphant://eladposvote?
+AppName=FooBar&
+Description=FooBar&
+DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
+PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
+CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
+CandidatePublicKeys=03ef5f8b0534c82aa4db218f7cead278124efc0411e4ca38b6131954a58e8ae3c0%2C03ef5f8b0534c82aa4db218f7cead278124efc0411e4ca38b6131954a58e8ae3c0
+
+```
+
+## 返回投票信息
+
+**返回信息格式：**
+
+无论是Callback或者Return哪种方式，都以字符串格式返回信息。
+```
+TXID="bb14a5898ca81ee0207ab9178df1d1e4617be3aa5e9dfec9e185d41ff13786fc"
+```
+
+
+**返回参数说明：**
+
+
+字段名称           | 类型              | 是否必选 | 描述
+----------------------| ------------------- | ------------------- | -------------------
+TXID             | String    | 必选 | 投票交易的TXID
+
+
+
+**HTTP Callback回调示例:**
+
+Callback以Post方法返回信息，在Body里以JSON格式返回信息。
+```
+Method: POST
+URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&offset=-480
+Body:
+{
+"TXID":"895630890fa53437cdd09e1f3bb4934585e1914eb45eb3a6b1e4a4d6bd789718"
+}
+```
+
+**HTTP Return返回示例:**
+Return以Get方法返回信息，投票交易对应的TXID以参数方式返回，请第三方避免在ReturnURL参数中使用TXID参数名，以免冲突。
+```
+Method: GET
+URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&offset=-480&TXID=895630890fa53437cdd09e1f3bb4934585e1914eb45eb3a6b1e4a4d6bd789718
+```
+
+您可以通 `blockchain.elastos.org` 确认交易状态.
+<https://blockchain.elastos.org/tx/895630890fa53437cdd09e1f3bb4934585e1914eb45eb3a6b1e4a4d6bd789718>
+
+# elacrcvote指令
+
+## 概要
+第三方应用可以通过CRC投票指令发起CRC投票，用户授权以后，将使用全部ELA余额，向目标投票人投票，具体ELA票数按用户参数设置的百分比分配。
+
+- 步骤1：第三方发起请求，包括候选人身份和票数百分比。
+- 步骤2：Elephant显示投票信息，用户确认后发起投票交易。
+- 步骤3：向第三方返回投票交易的TXID，第三方可以通过它查询交易状态。
+
+
+## 第三方发起投票请求
+**请求格式：**
+
+```
+elaphant://elacrcvote?
+	AppName=<AppName>&
+	AppID=<AppID>&
+	Description=<Description>&
+	DID=<DeveloperDID>&
+	PublicKey=<DID PublicKey>&
+	Candidates=<Candidates list>&
+	Votes=<List of votes>&
+	[&CallbackUrl=<Callback URL>]
+	[&ReturnUrl=<Return URL>&Target=<"internal" | "browser">]
+
+```
+**请求参数：**
+
+
+字段名称           | 类型              | 是否必选 | 描述
+----------------------| ------------------- | ------------------- | -------------------
+Candidates                 | String & URLEncode     | 必选 | 候选人列表，用逗号分隔
+Votes                 | String & URLEncode     | 必选 | 针对候选人的投票数列表，用逗号分隔
 
 
 **eladposvote请求示例：**
