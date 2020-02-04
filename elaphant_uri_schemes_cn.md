@@ -1,14 +1,14 @@
 
-# 介绍
+## 介绍
 
 为了让第三方应用简单方便地接入区块链，拥有使用区块链的能力，Elephant钱包开放接口给第三方应用，让第三方应用可以通过Elephant完成支付数字币、使用DID身份、向区块链写入数据。
 
-# 调用方式
+## 调用方式
 
 第三方可以通过特殊的Scheme “elaphant://”来唤起和调用Elephant，也可以将调用的URI编码成二维码，让Elephant主动扫描二维码来执行相应操作。
 scheme包括三部分：指令，必选参数和指令的参数。
 
-## scheme格式：
+### scheme格式：
 ```
 elaphant://<command></RequiredParameters...>[/CommandParameters...]
 ```
@@ -59,9 +59,9 @@ Elephant提供两种方式返回信息给第三方：[Callback URL]和[Return UR
 
 如果第三方应用同时面向多位用户服务，可以在Callback URL或者Return URL里附加追踪参数，Elephant在返回的时候也会保持原始参数设置来回调第三方App。
 
-# identity指令
+## identity指令
 
-## 概要
+### 概要
 当第三方应用程序需要验证用户DID身份、需要个人信息时，它可以向Elephant 发起请求，用户授权以后，Elephant将第三方请求的信息和签名一起返回给第三方。
 
 一个典型的用例是登录：
@@ -75,7 +75,7 @@ Elephant提供两种方式返回信息给第三方：[Callback URL]和[Return UR
 当收到Elephant返回的信息时，必须验证返回的随机数是否正确，如果不正确则无效。
 
 
-## 步骤1, 第三方发起请求
+### 步骤1, 第三方发起请求
 
 **请求格式：**
 ```
@@ -127,7 +127,7 @@ CallbackUrl=http%3A%2F%2Fbing.com
 也可以将URI生成二维码，用户通过Elephant扫描二维码完成请求。
 
 
-## 步骤2, 返回信息
+### 步骤2, 返回信息
 在用户授权以后，Elephant将用户DID相关信息按第三方请求的方式返回。
 - 对于Callback方式，目前仅支持HTTP Post方法，将按照请求时Callback URL的地址发起Post调用，并在Body里附带返回信息。
 - 对于Return方式，目前仅支持HTTP Get方法，将按照请求时Return URL的地址在内部Webview或者外部浏览器打开页面。
@@ -198,16 +198,16 @@ Return是以Get方式返回信息，在URL的参数中附加Data和Sign参数，
 
 ```
 
-## 步骤3, 解析和验证
+### 步骤3, 解析和验证
 1. 将参数Data的字符串内容转换为JSON对象；
 2. 从JSON对象中恢复PublicKey、DID字段内容；
 3. 验证PublicKey与DID是否匹配；
 4. 验证Data字符串内容、PublicKey和Sign的签名内容是否匹配；
 5. 验证返回的RandomNumber字段与“步骤1”请求时的RandomNumber值是否一致；
 
-# elapay指令
+## elapay指令
 
-## 概要
+### 概要
 当第三方应用程序需要使用数字币支付时，它可以向Elephant发起请求，用户授权以后会转账到请求的地址，这个过程类似于第三方请求支付宝和Paypal完成支付一样。
 
 - 步骤1：第三方发起请求，包括收款地址，金额，数字币种名称和订单唯一标识符。
@@ -215,7 +215,7 @@ Return是以Get方式返回信息，在URL的参数中附加Data和Sign参数，
 - 步骤3：向第三方返回转账交易的TXID，第三方可以通过它查询交易状态。
 
 
-## 第三方发起支付请求
+### 第三方发起支付请求
 **请求格式：**
 ```
 elaphant://elapay?
@@ -256,7 +256,7 @@ ReceivingAddress=EXRNP8Pm3KQR7EeLXFGRtfLdkBaeZsMLyy&
 CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
 ```
 
-## 返回支付信息
+### 返回支付信息
 
 **返回信息格式：**
 
@@ -299,9 +299,9 @@ URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&
 您可以通 `blockchain.elastos.org` 确认交易状态.
 <https://blockchain.elastos.org/tx/895630890fa53437cdd09e1f3bb4934585e1914eb45eb3a6b1e4a4d6bd789718>
 
-# eladposvote指令
+## eladposvote指令
 
-## 概要
+### 概要
 第三方应用可以通过投票指令发起DPoS投票，用户授权以后，将使用全部ELA余额发起投票交易。
 
 - 步骤1：第三方发起请求，包括候选人公钥列表。
@@ -309,7 +309,7 @@ URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&
 - 步骤3：向第三方返回投票交易的TXID，第三方可以通过它查询交易状态。
 
 
-## 第三方发起投票请求
+### 第三方发起投票请求
 **请求格式：**
 
 ```
@@ -345,7 +345,7 @@ CandidatePublicKeys=03ef5f8b0534c82aa4db218f7cead278124efc0411e4ca38b6131954a58e
 
 ```
 
-## 返回投票信息
+### 返回投票信息
 
 **返回信息格式：**
 
@@ -386,9 +386,9 @@ URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&
 您可以通 `blockchain.elastos.org` 确认交易状态.
 <https://blockchain.elastos.org/tx/895630890fa53437cdd09e1f3bb4934585e1914eb45eb3a6b1e4a4d6bd789718>
 
-# elacrcvote指令
+## elacrcvote指令
 
-## 概要
+### 概要
 第三方应用可以通过CRC投票指令发起CRC投票，用户授权以后，将使用全部ELA余额，向目标投票人投票。每位候选人的选票数为一个百分比，具体ELA票数按用户参数设置的百分比分配。
 
 - 步骤1：第三方发起请求，包括候选人身份和票数百分比。
@@ -396,7 +396,7 @@ URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&
 - 步骤3：向第三方返回投票交易的TXID，第三方可以通过它查询交易状态。
 
 
-## 第三方发起投票请求
+### 第三方发起投票请求
 **请求格式：**
 
 ```
@@ -434,7 +434,7 @@ CandidatePublicKeys=03ef5f8b0534c82aa4db218f7cead278124efc0411e4ca38b6131954a58e
 
 ```
 
-## 返回投票信息
+### 返回投票信息
 
 **返回信息格式：**
 
@@ -476,9 +476,9 @@ URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&
 <https://blockchain.elastos.org/tx/895630890fa53437cdd09e1f3bb4934585e1914eb45eb3a6b1e4a4d6bd789718>
 
 
-# sign指令
+## sign指令
 
-## 概要
+### 概要
 当第三方应用程序需要验证用户DID身份、需要个人信息时，它可以向Elephant 发起请求，用户授权以后，Elephant将构造一个签名证书返回给第三方。
 
 比如第三方请求用户对写对文章进行签名：
@@ -488,7 +488,7 @@ URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&
 3. 用户主动填写“用途声明”为：文章署名，并将请求内容、用途声明、时间戳、请求者信息打包并签名，构造成为授权证书。
 4. 将授权证书通过回调和返回两种方式通知第三方应用。
 
-## 步骤1, 第三方发起请求
+### 步骤1, 第三方发起请求
 
 **请求格式：**
 ```
@@ -527,7 +527,7 @@ CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
 也可以将URI生成二维码，用户通过Elephant扫描二维码完成请求。
 
 
-## 步骤2, 返回信息
+### 步骤2, 返回信息
 在用户授权以后，Elephant将生成授权证书返回给第三方。
 
 **返回信息格式：**
@@ -586,16 +586,16 @@ Return是以Get方式返回信息，在URL的参数中附加Data和Sign参数，
 
 ```
 
-## 步骤3, 解析和验证
+### 步骤3, 解析和验证
 1. 将参数Data的字符串内容转换为JSON对象；
 2. 从JSON对象中恢复PublicKey、DID字段内容；
 3. 验证PublicKey与DID是否匹配；
 4. 验证Data字符串内容、PublicKey和Sign的签名内容是否匹配；
 5. 验证返回的RequestedContent字段与“步骤1”请求时的RequestedContent值是否一致；
 
-# multicreate指令
+## multicreate指令
 
-## 步骤1, 请求
+### 步骤1, 请求
 
 **指令参数：**
 
@@ -615,7 +615,7 @@ ReturnUrl             | String     | 回调后返回的页面URI
 elaphant://multicreate?AppID=6d3936396579af659f8faa82e2105e33d2b8adbe77be97f698e4e19ac9e7711ed341936aa2641d03e5238fe81f404f273d7932ff63019ad8e50c09b853204f01&AppName=elastos.multisign.test&PublicKey=02ab56c5493d1b26639dcdbc53a664c5eceb4739043ce06eae358b2d8366f358b1&DID=iWgMpqouJPK2H4WM4r2zvLp8XpdZwDihZS&ReturnUrl=http%3A%2F%2Fapp.51aiu.com%2Felastos%2Fhtml%2Fwallet.html&PublicKeys=031ed85c1a56e912de5562657c6d6a03cfe974aab8b62d484cea7f090dac9ff1cf%2C02afa15bf70b80b9398e467613e5ffecb491e339be7e49ef6687bab46e564218d0%2C02aa8bc1c0f935be03c6c4d3c7c200944f1ab5413f15925ba0ee4186b88d695a20&RequiredCount=2
 ```
 
-## 步骤2, 返回信息
+### 步骤2, 返回信息
 
 参数：
 
@@ -630,16 +630,16 @@ Return url回调示例：
  http://app.51aiu.com/elastos/html/wallet.html?Data=%7B%22Address%22%3A%228UKQAU6AjphwAehoeD4f4cknodah2A9qsY%22%2C%22DID%22%3A%22iii89hfPzr4vKkhJhg1vKAyP5XvP72BASn%22%2C%22PublicKey%22%3A%2202afa15bf70b80b9398e467613e5ffecb491e339be7e49ef6687bab46e564218d0%22%7D&Sign=d194ffed53f04a7cf0a8816b020ad989cbcf05c352d94e911b6e236390b968a25798994faaaebbcb92df66fea5f16b64daf7d72ea5959afd799880f7a921ea8e&Scheme=multicreate
 ```
 
-## 步骤3, 解析和验证
+### 步骤3, 解析和验证
 1. 将参数Data的字符串内容转换为JSON对象；
 2. 从JSON对象中恢复PublicKey、DID字段内容；
 3. 验证PublicKey与DID是否匹配；
 4. 验证Data字符串内容、PublicKey和Sign的签名内容是否匹配；
 
 
-# multitx指令
+## multitx指令
 
-## 步骤1, 请求
+### 步骤1, 请求
 
 **指令参数：**
 
@@ -658,9 +658,9 @@ ReturnUrl             | String     | 回调后返回的页面URI
 elaphant://multitx?AppID=6d3936396579af659f8faa82e2105e33d2b8adbe77be97f698e4e19ac9e7711ed341936aa2641d03e5238fe81f404f273d7932ff63019ad8e50c09b853204f01&AppName=elastos.multisign.test&PublicKey=02ab56c5493d1b26639dcdbc53a664c5eceb4739043ce06eae358b2d8366f358b1&DID=iWgMpqouJPK2H4WM4r2zvLp8XpdZwDihZS&Tx=%7B%22Transactions%22%3A%5B%7B%22UTXOInputs%22%3A%5B%7B%22address%22%3A%228UKQAU6AjphwAehoeD4f4cknodah2A9qsY%22%2C%22txid%22%3A%222e4d2a77fadce79873468f1ce650d5e559631736717c61329e8842199ddfb9cf%22%2C%22index%22%3A1%7D%5D%2C%22Fee%22%3A4860%2C%22Outputs%22%3A%5B%7B%22amount%22%3A10000000%2C%22address%22%3A%22EgCrEaSfKrLAXP4DFqaxQVFYUjDHzDfxGZ%22%7D%2C%7B%22amount%22%3A899951400%2C%22address%22%3A%228UKQAU6AjphwAehoeD4f4cknodah2A9qsY%22%7D%5D%2C%22Memo%22%3A%22%22%7D%5D%7D
 ```
 
-## 步骤2, 返回信息
+### 步骤2, 返回信息
 
 当前版本不返回任何信息，回调仅用于通知转账完成。
 
-## 步骤3, 解析和验证
+### 步骤3, 解析和验证
 
