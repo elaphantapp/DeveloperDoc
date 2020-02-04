@@ -389,7 +389,7 @@ URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&
 # elacrcvote指令
 
 ## 概要
-第三方应用可以通过CRC投票指令发起CRC投票，用户授权以后，将使用全部ELA余额，向目标投票人投票，具体ELA票数按用户参数设置的百分比分配。
+第三方应用可以通过CRC投票指令发起CRC投票，用户授权以后，将使用全部ELA余额，向目标投票人投票。每位候选人的选票数为一个百分比，具体ELA票数按用户参数设置的百分比分配。
 
 - 步骤1：第三方发起请求，包括候选人身份和票数百分比。
 - 步骤2：Elephant显示投票信息，用户确认后发起投票交易。
@@ -417,8 +417,8 @@ elaphant://elacrcvote?
 
 字段名称           | 类型              | 是否必选 | 描述
 ----------------------| ------------------- | ------------------- | -------------------
-Candidates                 | String & URLEncode     | 必选 | 候选人列表，用逗号分隔
-Votes                 | String & URLEncode     | 必选 | 针对候选人的投票数列表，用逗号分隔
+Candidates                 | String & URLEncode     | 必选 | 候选人DID的列表，用逗号分隔
+Votes                 | String & URLEncode     | 必选 | 针对候选人的投票数列表，以小数方式表示总余额的百分比，用逗号分隔
 
 
 **eladposvote请求示例：**
