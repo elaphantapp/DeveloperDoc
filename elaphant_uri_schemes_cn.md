@@ -421,10 +421,10 @@ Candidates                 | String & URLEncode     | 必选 | 候选人DID的Pr
 Votes                 | String & URLEncode     | 必选 | 针对候选人的投票数列表，以小数方式表示总余额的百分比，用逗号分隔
 
 
-**eladposvote请求示例：**
+**elacrcvote请求示例：**
 
 ```
-elaphant://eladposvote?
+elaphant://elacrcvote?
 AppName=FooBar&
 Description=FooBar&
 DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
