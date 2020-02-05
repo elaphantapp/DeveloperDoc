@@ -417,7 +417,7 @@ elaphant://elacrcvote?
 
 字段名称           | 类型              | 是否必选 | 描述
 ----------------------| ------------------- | ------------------- | -------------------
-Candidates                 | String & URLEncode     | 必选 | 候选人DID的列表，用逗号分隔
+Candidates                 | String & URLEncode     | 必选 | 候选人DID的Program Hash的列表，用逗号分隔
 Votes                 | String & URLEncode     | 必选 | 针对候选人的投票数列表，以小数方式表示总余额的百分比，用逗号分隔
 
 
