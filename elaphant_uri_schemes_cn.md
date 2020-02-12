@@ -23,6 +23,7 @@ elaphant://<command></RequiredParameters...>[/CommandParameters...]
 - [getproperty](#getproperty指令)
 - [请求创建多签钱包multicreate](#multicreate指令)
 - [多签交易请求签名multitx](#multitx指令)
+- [调用智能合约execute](#execute指令)
 
 ### 必选参数：
 任何第三方向Elephant发起调用都必须提供关于App相关信息的参数，用于验证调用者身份和数据可信性。
@@ -664,4 +665,100 @@ elaphant://multitx?AppID=6d3936396579af659f8faa82e2105e33d2b8adbe77be97f698e4e19
 当前版本不返回任何信息，回调仅用于通知转账完成。
 
 ### 步骤3, 解析和验证
+
+## execute指令
+
+### 概要
+第三方应用可以通过钱包签名交易发起对ETH合约及其兼容合约的调用。目前支持调用ETH主链合约和ELA的智能合约侧链的合约。需要提供相关通性参数，并返回交易TXID。
+
+
+### 第三方发起合约调用请求
+**请求格式：**
+
+```
+elaphant://execute?
+	AppName=<AppName>&
+	AppID=<AppID>&
+	Description=<Description>&
+	DID=<DeveloperDID>&
+	PublicKey=<DID PublicKey>&
+	ContractAddress =<erc20 contract address>&
+	Data=<contract payload data>&
+	GasLimit=<contract call gas limit>&
+	GasPrice=<contract call gas price>
+	[&Value=<send ether to contract (unit wei)>]
+	[&CallbackUrl=<Callback URL>]
+	[&ReturnUrl=<Return URL>&Target=<"internal" | "browser">]
+
+```
+**请求参数：**
+
+
+字段名称           | 类型              | 是否必选 | 描述
+----------------------| ------------------- | ------------------- | -------------------
+ContractAddress       | String & URLEncode     | 必选 | 被调用的智能合约地址
+Data                  | String & URLEncode     | 必选 | 调用合约的参数内容
+GasLimit              | String & URLEncode     | 必选 | 调用合约的gas limit，含义与调用ETH合约相同
+GasPrice              | String & URLEncode     | 必选 | 调用合约的gas price，单位是wei，含义与调用ETH合约相同
+Value                 | String & URLEncode     | 可选 | 调用合约需要发送的金额数量，单位是ETH或ELA
+
+
+
+**elacrcvote请求示例：**
+
+```
+elaphant://execute?
+AppName=FooBar&
+Description=FooBar&
+DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
+PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
+CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
+ContractAddress=0xiD3ef5f8b0534c82aa4db218f7cead278&
+Data=0xaee25613000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec700000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000420000000000000000000000000000000000000000000000000000000000000001d0000000000000000000000001053946901063d2e6bfe012c35f3c3e1dfd4c49b0000000000000000000000008153c2493122e7e0ee9722057aba38d65a2abc26000000000000000000000000a6edcf22448ccc956772629ac64733812f8f1958000000000000000000000000881dc310646a85931a7f5cb017d0b9ef4a5697d5000000000000000000000000b688d101e72e3c8b32821bdd5bd093eda17027560000000000000000000000000884a822d00032e72bd18f6371e745cbecc897b2000000000000000000000000fd&
+GasLimit=949234&
+GasPrice=8.8&
+Value=0.0006
+
+```
+
+### 返回投票信息
+
+**返回信息格式：**
+
+无论是Callback或者Return哪种方式，都以字符串格式返回信息。
+```
+TXID="bb14a5898ca81ee0207ab9178df1d1e4617be3aa5e9dfec9e185d41ff13786fc"
+```
+
+
+**返回参数说明：**
+
+
+字段名称           | 类型              | 是否必选 | 描述
+----------------------| ------------------- | ------------------- | -------------------
+TXID             | String    | 必选 | 合约交易的TXID
+
+
+
+**HTTP Callback回调示例:**
+
+Callback以Post方法返回信息，在Body里以JSON格式返回信息。
+```
+Method: POST
+URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&offset=-480
+Body:
+{
+"TXID":"895630890fa53437cdd09e1f3bb4934585e1914eb45eb3a6b1e4a4d6bd789718"
+}
+```
+
+**HTTP Return返回示例:**
+Return以Get方法返回信息，投票交易对应的TXID以参数方式返回，请第三方避免在ReturnURL参数中使用TXID参数名，以免冲突。
+```
+Method: GET
+URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&offset=-480&TXID=895630890fa53437cdd09e1f3bb4934585e1914eb45eb3a6b1e4a4d6bd789718
+```
+
+您可以通 `blockchain.elastos.org` 确认交易状态.
+<https://blockchain.elastos.org/tx/895630890fa53437cdd09e1f3bb4934585e1914eb45eb3a6b1e4a4d6bd789718>
 
