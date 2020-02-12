@@ -417,8 +417,8 @@ elaphant://elacrcvote?
 
 字段名称           | 类型              | 是否必选 | 描述
 ----------------------| ------------------- | ------------------- | -------------------
-Candidates                 | String & URLEncode     | 必选 | 候选人DID的Program Hash的列表，用逗号分隔
-Votes                 | String & URLEncode     | 必选 | 针对候选人的投票数列表，以小数方式表示总余额的百分比，用逗号分隔
+Candidates                 | String & URLEncode     | 必选 | 候选人DID的DID的列表，用逗号分隔
+Votes                 | String & URLEncode     | 必选 | 针对候选人的投票数列表，以百分数的小数方式表示总余额，用逗号分隔
 
 
 **elacrcvote请求示例：**
@@ -430,7 +430,8 @@ Description=FooBar&
 DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
 PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
 CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
-CandidatePublicKeys=03ef5f8b0534c82aa4db218f7cead278124efc0411e4ca38b6131954a58e8ae3c0%2C03ef5f8b0534c82aa4db218f7cead278124efc0411e4ca38b6131954a58e8ae3c0
+Candidates=iD3ef5f8b0534c82aa4db218f7cead2781%2Ci18f7cead278124efc0411e4ca38b613195%2Ci24efc0411e4ca38b6131954a58e8ae3c&
+Votes=33.333333%2C33.3333333%2C33.333333
 
 ```
 
