@@ -20,3 +20,8 @@ Register a mini-program immediately: [Mini Program maker](https://elaphantapp.gi
 
 ## 5. Build an Elaphant Node
 https://elephantnode.readthedocs.io/
+
+## 6. Ela Red Packet Open Api
+You can create a red packet via these APIs, you can build the Red Packet in your app.
+In another side, if you want to send ELA to your users, you can use these APIs too and don't need implement the wallet works.
+[Red Packet Open APIs](./redpacket_api_v0.0.2.md)
