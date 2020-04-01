@@ -390,7 +390,7 @@ URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&
 ## elacrcvote指令
 
 ### 概要
-第三方应用可以通过CRC投票指令发起CRC投票，用户授权以后，将使用全部ELA余额，向目标投票人投票。每位候选人的选票数为一个百分比，具体ELA票数按用户参数设置的百分比分配。
+第三方应用可以通过CRC投票指令发起CRC投票，用户授权以后，将使用ELA余额，向目标投票人投票。每位候选人的选票数为一个百分比，具体ELA票数按用户参数设置的百分比分配。投票百分比之和可以小于等于100%。
 
 - 步骤1：第三方发起请求，包括候选人身份和票数百分比。
 - 步骤2：Elephant显示投票信息，用户确认后发起投票交易。
@@ -419,20 +419,14 @@ elaphant://elacrcvote?
 字段名称           | 类型              | 是否必选 | 描述
 ----------------------| ------------------- | ------------------- | -------------------
 Candidates                 | String & URLEncode     | 必选 | 候选人DID的DID的列表，用逗号分隔
-Votes                 | String & URLEncode     | 必选 | 针对候选人的投票数列表，以百分数的小数方式表示总余额，用逗号分隔
+Votes                 | String & URLEncode     | 必选 | 针对候选人的投票数列表，以小数表示百分比，用逗号分隔。例如12.345表示12.345%
 
 
 **elacrcvote请求示例：**
 
 ```
-elaphant://elacrcvote?
-AppName=FooBar&
-Description=FooBar&
-DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
-PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
-CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
-Candidates=iD3ef5f8b0534c82aa4db218f7cead2781%2Ci18f7cead278124efc0411e4ca38b613195%2Ci24efc0411e4ca38b6131954a58e8ae3c&
-Votes=33.333333%2C33.3333333%2C33.333333
+elaphant://elacrcvote?AppID=552453550a0ad3ad6cedd21a7bd47d2a3049ebb17099e892d92b93f9bd72bdeed9a439806118358422f3cb957a1ddebdc768ff667c2bd7359063d79d1618bf9c&PublicKey=02752F9483DF73C57EDEA1F84F2431DC1036B2643F9519E78CB660D8C332793EDC&DID=iiJRtAn6wyHaMSDQPS9Kkft3iiNjH5tTmi&AppName=dposvote.h5.app&ReturnUrl=https%253A%252F%252Fdposvote.elaphant.app%252F%2523%252Freturn_url&Candidates=icS954DGsXXuYJCUbRKiC8JAcoxkaeQVZg%2Cia9akyCKcvwDNGAGxPrMTNVSKZV4f3tcKj%2CiYVHbMJ7cKuKh7UK6SCB1BWG7bKHJkJ9Y8%2CiauRDuc1cNwQEvQzcTzAGb1HPB6ZafLT8g%2CibdkX3PQHwKAu6vRaeDVyo8VU9mXW2Wm8R%2CiYV7W85PAJLUZDTmtHLL6CHJQrxferVqiR%2Ciiw7RvgaYJKqpnrEuLGmDrs5dQmBBwy1iG%2CiZ1L49cbufmYsD2eGn92bogGLgakk8EpAo%2CicaJrj8zbbECzPTF5wGScktq5ce56mRPee%2CiVSBp5ocfrLnAwDTS7C9LUKvyo4SY7f67B%2Cipv6veuJQsb1A2RgzPiDbhc8gYB1FZ3ty2%2CiWXmCVdAzvr82DPQZ8Ff44RYbYCMKrftKs%2CihjN3uVVm6pvkjEUhdrXJjwbHr6QvXF3nE%2CinbTGAE5P5aBpwYM8oVKo1AUsZgBwySArH%2CiTTKVj8Zn4UNR6Lh6zjuvftqdXtptkQzbn%2CiSzK9Anr5K6ocUNJ77xpW7Ae4AyugTtDLQ&Votes=10%2C10%2C10%2C10%2C5%2C5%2C5%2C5%2C5%2C5%2C5%2C5%2C5%2C5%2C5%2C5
+
 
 ```
 
