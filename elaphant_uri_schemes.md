@@ -15,6 +15,7 @@ elaphant://<command></RequiredParameters...>[/CommandParameters...]
 - [identity](#identity-command)
 - [elapay](#elapay-command)
 - [eladposvote](#eladposvote-command)
+- [elacrcvote](#elacrcvote-command)
 - [sign](#sign-command)
 - [setproperty](#setproperty-command)
 - [getproperty](#getproperty-command)
@@ -327,6 +328,86 @@ DID=iWwPFLS8Gp18LqM6GJgLz5QrPwjBqqshxF&
 PublicKey=03684d22dd6de91cc5b504ff0499eff919bd2a1507826475d5c6b314217ea96417&
 CallbackUrl=http%3A%2F%2Flocalhost%3A8081%2Fpacket%2Fgrab%2F1509893100600982-0&
 CandidatePublicKeys=03ef5f8b0534c82aa4db218f7cead278124efc0411e4ca38b6131954a58e8ae3c0%2C03ef5f8b0534c82aa4db218f7cead278124efc0411e4ca38b6131954a58e8ae3c0
+```
+
+## **Return Vote Information**
+
+Return information format:
+
+Regardless of whether the Callback or Return method is used, information is returned in a character string format.
+```
+TXID="bb14a5898ca81ee0207ab9178df1d1e4617be3aa5e9dfec9e185d41ff13786fc"
+```
+Instructions for trackback parameter:
+
+| **Fieldname** | **Category** | **Required?** | **Description**        |
+| ------------- | ------------ | ------------- | ---------------------- |
+| TXID          | String       | Required      | Vote Transaction TXIDs |
+
+HTTP Callback example:
+
+Callbacks use the Post method to return information, returning information in the Body in JSON format.
+```
+Method: POST
+URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&offset=-480
+Body:
+{
+"TXID":"895630890fa53437cdd09e1f3bb4934585e1914eb45eb3a6b1e4a4d6bd789718"
+}
+```
+
+HTTP Return example: Return uses the Get method to return information, the TXID corresponding to vote transactions are returned using the parameter method. Third-parties should not use TXID parameter names in the ReturnURL, to avoid conflicts.
+```
+Method: GET
+URL: https://redpacket.elastos.org/packet/grab/3176517663416268-1?_locale=zh_CN&offset=-480&TXID=895630890fa53437cdd09e1f3bb4934585e1914eb45eb3a6b1e4a4d6bd789718
+```
+
+You can confirm the status of transactions at blockchain.elastos.org.
+
+<https://blockchain.elastos.org/tx/895630890fa53437cdd09e1f3bb4934585e1914eb45eb3a6b1e4a4d6bd789718>
+
+# **Elacrcvote Command**
+
+## Outline
+Third-party apps can vote on CR candidates via this command. After the user authorizes, the ELA balance will be used to vote for the target candidate. The number of votes for each candidate is a percentage, and a specific ELA vote is assigned based on the percentage set by the user parameters. The sum of the parameters may be less than or equal to 100%.
+
+- Step 1：Requested by the third party, including candidate DID and percentage of votes。
+- Step 2：The elephant displays voting information, and the user initiates a voting transaction after confirmation.
+- Step 3：TXID of the voting transaction is returned to the third party, and the third party can query the transaction status with it.
+
+
+## **Third-Party initiation of vote requests**
+Request format:
+
+```
+elaphant://elacrcvote?
+	AppName=<AppName>&
+	AppID=<AppID>&
+	Description=<Description>&
+	DID=<DeveloperDID>&
+	PublicKey=<DID PublicKey>&
+	Candidates=<Candidates list>&
+	Votes=<List of votes>&
+	[&CallbackUrl=<Callback URL>]
+	[&ReturnUrl=<Return URL>&Target=<"internal" | "browser">]
+
+```
+
+Request parameters:
+
+
+| **Fieldname**       | **Category**       | **Required?** | **Description**    
+----------------------| ------------------- | ------------------- | -------------------
+Candidates                 | String & URLEncode     | Required | List of candidate DIDs, separated by commas
+Votes                 | String & URLEncode     | Required | List of candidates' votes, expressed as a decimal fraction, separated by commas. E.g., 12.345 is 12.345%
+
+
+request example:
+
+```
+
+elaphant://elacrcvote?AppID=552453550a0ad3ad6cedd21a7bd47d2a3049ebb17099e892d92b93f9bd72bdeed9a439806118358422f3cb957a1ddebdc768ff667c2bd7359063d79d1618bf9c&PublicKey=02752F9483DF73C57EDEA1F84F2431DC1036B2643F9519E78CB660D8C332793EDC&DID=iiJRtAn6wyHaMSDQPS9Kkft3iiNjH5tTmi&AppName=dposvote.h5.app&ReturnUrl=https%253A%252F%252Fdposvote.elaphant.app%252F%2523%252Freturn_url&Candidates=icS954DGsXXuYJCUbRKiC8JAcoxkaeQVZg%2Cia9akyCKcvwDNGAGxPrMTNVSKZV4f3tcKj%2CiYVHbMJ7cKuKh7UK6SCB1BWG7bKHJkJ9Y8%2CiauRDuc1cNwQEvQzcTzAGb1HPB6ZafLT8g%2CibdkX3PQHwKAu6vRaeDVyo8VU9mXW2Wm8R%2CiYV7W85PAJLUZDTmtHLL6CHJQrxferVqiR%2Ciiw7RvgaYJKqpnrEuLGmDrs5dQmBBwy1iG%2CiZ1L49cbufmYsD2eGn92bogGLgakk8EpAo%2CicaJrj8zbbECzPTF5wGScktq5ce56mRPee%2CiVSBp5ocfrLnAwDTS7C9LUKvyo4SY7f67B%2Cipv6veuJQsb1A2RgzPiDbhc8gYB1FZ3ty2%2CiWXmCVdAzvr82DPQZ8Ff44RYbYCMKrftKs%2CihjN3uVVm6pvkjEUhdrXJjwbHr6QvXF3nE%2CinbTGAE5P5aBpwYM8oVKo1AUsZgBwySArH%2CiTTKVj8Zn4UNR6Lh6zjuvftqdXtptkQzbn%2CiSzK9Anr5K6ocUNJ77xpW7Ae4AyugTtDLQ&Votes=10%2C10%2C10%2C10%2C5%2C5%2C5%2C5%2C5%2C5%2C5%2C5%2C5%2C5%2C5%2C5
+
 ```
 
 ## **Return Vote Information**
