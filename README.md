@@ -27,3 +27,9 @@ You can create a red packet via these APIs, you can build the Red Packet in your
 In another side, if you want to send ELA to your users, you can use these APIs too and don't need implement the wallet works.
 
 [Red Packet Open APIs](./redpacket_api_v0.0.2.md)
+
+## 7. Build an elaphant wallet ethereum service api/ ethereum sidechain service api/ elaphant price api
+
+Github : https://github.com/elastos/Elastos.ORG.API.Misc
+
+Docs : https://apimisc.readthedocs.io/en/latest
