@@ -1,4 +1,4 @@
-#聊天SDK相关文档 
+#聊天SDK相关文档
 
 ##一.Elastos.SDK.ElephantWallet.Contact
 
@@ -77,4 +77,3 @@
 
 
 ###遗留问题：未集成新版本PeerNodeSDK和ContactSDK，接口与新SDK不兼容。
-
