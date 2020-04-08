@@ -39,23 +39,23 @@ https://github.com/elastos/Elastos.SDK.DIDClient.Java
 doc: https://did-client-java-api.readthedocs.io/en/latest/
 
 https://github.com/elastos/Elastos.ORG.BlockchainAgent  
-url: https://api-wallet-did.elastos.org/
+url: https://api-wallet-did.elastos.org/ 
 doc: https://github.com/elastos/Elastos.ORG.BlockchainAgent/blob/master/README.md
 
 https://github.com/elastos/Elastos.ORG.DID.Explorer.Api 
-url: https://api-wallet-did.elastos.org/
+url: https://api-wallet-did.elastos.org/ 
 doc: https://github.com/elastos/Elastos.ORG.DID.Explorer.Api/blob/master/README.md
 
 https://github.com/elastos/Elastos.ORG.DID.Explorer.Api/tree/master/mogodb 
-url: https://api-explorer.elaphant.app/
+url: https://api-explorer.elaphant.app/ 
 doc: https://github.com/elastos/Elastos.ORG.DID.Explorer.Api/blob/master/README.md (/api/2/didexplorer)
 
 https://github.com/elastos/Elastos.Service.CrossChainTransfer   
-url: http://transfer.elaphant.net/
+url: http://transfer.elaphant.net/ 
 doc: https://github.com/elastos/Elastos.Service.CrossChainTransfer/blob/master/elastos_corss_chain_service_api.md
 
 https://github.com/elaphantapp/EchoService
-url: https://echo.elaphant.app/
+url: https://echo.elaphant.app/ 
 doc: https://github.com/elaphantapp/EchoService/blob/master/README.md
 
 https://github.com/elastos/Elastos.ORG.Zhengshu/tree/master/server.api
@@ -63,11 +63,11 @@ url: https://zhengshu.elastos.org/
 doc: https://github.com/elastos/Elastos.ORG.Zhengshu/blob/master/server.api/README.md
 
 https://github.com/elaphantapp/VoteForMe.Service 
-url: https://voteforme.elaphant.app/
+url: https://voteforme.elaphant.app/ 
 doc: https://github.com/elaphantapp/VoteForMe.Service/blob/master/server.api/README.md
 
 https://gitlab.com/elastos/Elastos.ORG.MicroService.Web/-/tree/master/micro.services.api
-url: https://baas.elastos.org/
+url: https://baas.elastos.org/ 
 doc: https://gitlab.com/elastos/Elastos.ORG.MicroService.Web/-/blob/master/micro.services.api/docs/elastos_micro_services_api.md
 
 
