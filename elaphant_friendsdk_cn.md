@@ -1,10 +1,10 @@
-#聊天SDK相关文档 
+# 聊天SDK相关文档 
 
-##一.Elastos.SDK.ElephantWallet.Contact
+## 一.Elastos.SDK.ElephantWallet.Contact
 
-###下载地址：https://github.com/elastos/Elastos.SDK.ElephantWallet.Contact/
-###文档地址：https://elastossdkcontact.readthedocs.io/en/latest/
-###编译方法：
+### 下载地址：https://github.com/elastos/Elastos.SDK.ElephantWallet.Contact/
+### 文档地址：https://elastossdkcontact.readthedocs.io/en/latest/
+### 编译方法：
 
 > PC(MacOS，Ubuntu): $`./scripts/build.sh`, target libraries are in build/sysroot/{Darwin,Linux}/x86_64/lib/.
 
@@ -13,11 +13,11 @@
 > iOS:               $`./scripts/build-ios.sh`, target libraries are inbuild/package/Elastos.SDK.Contact-ios-vx.x.x.zip.
 
 
-##二.PersonalStorage.SDK.OSS
+## 二.PersonalStorage.SDK.OSS
 
-###下载地址：https://github.com/elaphantapp/PersonalStorage.SDK.OSS
-###文档地址：无
-###编译方法：
+### 下载地址：https://github.com/elaphantapp/PersonalStorage.SDK.OSS
+### 文档地址：无
+### 编译方法：
 
 > PC(MacOS，Ubuntu): $`./scripts/build.sh`, target libraries are in build/sysroot/{Darwin,Linux}/x86_64/lib/.
 
@@ -26,9 +26,9 @@
 > iOS:               $`./scripts/build.sh -f iOS`, target libraries are in build/sysroot/iOS/arm64/lib/.
 
      
-##三.微服务
+## 三.微服务
 
-###微服务类型
+### 微服务类型
 > - Moments（朋友圈）
     https://github.com/zuohuahua/Moments
 > - MicroService.PersonalStorage（个人存储微服务）
@@ -43,13 +43,13 @@
     https://github.com/elaphantapp/PeerNodeSDK/tree/master/plugins/MicroService.Feedback
 
 
-###编译方法
+### 编译方法
     选择上述微服务中的一个或几个，download到PeerNodeSDK的plugins文件夹，执行./scripts/build.sh，微服务会被PeerNodeSDK自动编译出so，并置于build/sysroot/Linux/x86_64/lib/PeerNodePlugins目录下。
 
-###执行微服务
+### 执行微服务
     类似./build/sysroot/Linux/x86_64/bin/PeerNodeLauncher.sh -name build/sysroot/Linux/x86_64/lib/PeerNodePlugins/libChatGroupService.so -path /tmp/PeerNode/ -key 4138db5bd521d810dbd5863bda6f18af8dbaa8382fd6a5260ee09cf05d2dc276 
 
-###已部署的服务地址
+### 已部署的服务地址
 > - CharGroup
     privkey:	4138db5bd521d810dbd5863bda6f18af8dbaa8382fd6a5260ee09cf05d2dc276
 	did:	iinVuWZXaUU4QVhHMVvDS3wdaNausvW85M
@@ -76,4 +76,4 @@
 	carrieraddr:	To6HsbmTNYhbrakRqLXMYVSAeJw9cEbqnLS8zEsXWXpspiiqZaee
 
 
-###遗留问题：未集成新版本PeerNodeSDK和ContactSDK，接口与新SDK不兼容。
+### 遗留问题：未集成新版本PeerNodeSDK和ContactSDK，接口与新SDK不兼容。
