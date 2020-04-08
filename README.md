@@ -70,4 +70,5 @@ https://gitlab.com/elastos/Elastos.ORG.MicroService.Web/-/tree/master/micro.serv
 * url: https://baas.elastos.org/ 
 * doc: https://gitlab.com/elastos/Elastos.ORG.MicroService.Web/-/blob/master/micro.services.api/docs/elastos_micro_services_api.md
 
-
+## 9. FriendSDK
+FriendSDK([中文版](./elaphant_friendsdk_cn.md))
