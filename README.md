@@ -21,6 +21,8 @@ Register a mini-program immediately: [Mini Program maker](https://elaphantapp.gi
 ## 5. Build an Elaphant Node and Restful APIs
 https://elephantnode.readthedocs.io/
 
+Entry: https://node1.elaphant.app
+
 ## 6. Ela Red Packet Open Api
 
 You can create a red packet via these APIs, you can build the Red Packet in your app.
