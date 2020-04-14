@@ -20,17 +20,17 @@ Hello everyone, this article will describe a method that allows you to export El
 
 5. Open the Metamask and open the Account menu.
 
-![](./images/metamask2.png)
+<img src="images/metamask2.png" width="274">
 
 6. Click the "Import account".
 
 7. Paste the Private Key in the input field.
 
-![](./images/metamask3.png)
+<img src="images/metamask3.png" width="274">
 
 8. Click "Import" button to finish importing, you can see your ETH in the Metamask wallet.
 
-![](./images/metamask5.png)
+<img src="images/metamask5.png" width="274">
 
 9. Enjoy it!
 
@@ -40,11 +40,11 @@ Hello everyone, this article will describe a method that allows you to export El
 
 2. Please enter below parameters:
 
-![](./images/metamask1.png)
+<img src="images/metamask1.png" width="274">
 
 3. Click "Save" and fresh the network again.
 
-![](./images/metamask6.png)
+<img src="images/metamask6.png" width="274">
 
 4. You can switch ETH and ELA with the "Networks" menu, enjoy it!
 
