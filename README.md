@@ -6,6 +6,8 @@ How to call elephant ( [中文版](./how_to_call_elephant_cn.md) )
 
 [Use Elephant to log in quickly](./login_with_elaphant.md)
 
+[How to use Elaphant payment](.how_to_use_elaphant_payment.md)
+
 ## 2. The API of Elephant wallet for 3rd APPs
 
 URI schemes introduction ( [English version](./elaphant_uri_schemes.md) | [中文版](./elaphant_uri_schemes_cn.md) )
